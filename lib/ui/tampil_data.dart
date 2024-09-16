@@ -3,27 +3,40 @@ import 'package:flutter/material.dart';
 class TampilData extends StatelessWidget {
   final String nama;
   final String nim;
-  final int tahun;
+  final String shiftBaru;
 
   const TampilData({
     Key? key,
     required this.nama,
     required this.nim,
-    required this.tahun,
+    required this.shiftBaru,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final int umur = DateTime.now().year - tahun;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Perkenalan"),
+        title: const Text('Data Anda'),
       ),
-      body: Container(
-        margin: const EdgeInsets.all(10),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          children: [
-            Text("Nama saya $nama, NIM $nim, dan umur saya adalah $umur tahun"),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'Nama: $nama',
+              style: const TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'NIM: $nim',
+              style: const TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Shift Baru: $shiftBaru',
+              style: const TextStyle(fontSize: 18),
+            ),
           ],
         ),
       ),

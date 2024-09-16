@@ -1,69 +1,78 @@
-import '/ui/tampil_data.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'tampil_data.dart';
 
 class FormData extends StatefulWidget {
   const FormData({Key? key}) : super(key: key);
 
   @override
-  FormDataState createState() => FormDataState();
+  _FormDataState createState() => _FormDataState();
 }
 
-class FormDataState extends State<FormData> {
-  final _namaController = TextEditingController();
-  final _nimController = TextEditingController();
-  final _tahunController = TextEditingController();
+class _FormDataState extends State<FormData> {
+  final _formKey = GlobalKey<FormState>();
+  String nama = '';
+  String nim = '';
+  String shiftBaru = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Input Data"),
+        title: const Text('Form Input Data'),
       ),
-      body: Container(
-        margin: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            _textboxNama(),
-            _textboxNIM(),
-            _textboxTahun(),
-            _tombolSimpan()
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                decoration: const InputDecoration(labelText: 'Nama'),
+                onSaved: (value) {
+                  setState(() {
+                    nama = value ?? '';
+                  });
+                },
+              ),
+              TextFormField(
+                decoration: const InputDecoration(labelText: 'NIM'),
+                onSaved: (value) {
+                  setState(() {
+                    nim = value ?? '';
+                  });
+                },
+              ),
+              TextFormField(
+                decoration: const InputDecoration(labelText: 'Shift Baru'),
+                onSaved: (value) {
+                  setState(() {
+                    shiftBaru = value ?? '';
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    _formKey.currentState?.save();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TampilData(
+                          nama: nama,
+                          nim: nim,
+                          shiftBaru: shiftBaru,
+                        ),
+                      ),
+                    );
+                  }
+                },
+                child: const Text('Submit'),
+              ),
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  _textboxNama() {
-    return TextField(
-      decoration: const InputDecoration(labelText: "Nama"),
-      controller: _namaController,
-    );
-  }
-
-  _textboxNIM() {
-    return TextField(
-      decoration: const InputDecoration(labelText: "NIM"),
-      controller: _nimController,
-    );
-  }
-
-  _textboxTahun() {
-    return TextField(
-      decoration: const InputDecoration(labelText: "Tahun Lahir"),
-      controller: _tahunController,
-    );
-  }
-
-  _tombolSimpan() {
-    return ElevatedButton(
-        onPressed: () {
-          String nama = _namaController.text;
-          String nim = _nimController.text;
-          int tahun = int.parse(_tahunController.text);
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                  TampilData(nama: nama, nim: nim, tahun: tahun)));
-        },
-        child: const Text('Simpan'));
   }
 }

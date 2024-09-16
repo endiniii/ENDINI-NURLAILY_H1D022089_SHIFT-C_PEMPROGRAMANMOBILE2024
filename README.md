@@ -1,17 +1,17 @@
-@@ -1,12 +1,23 @@
 # Tugas Pertemuan 2
 
 Nama: Endini Nurlaily
+NIN: H1D022089
+Shift Baru: C (Hari Rabu)
 
 ## Instruksi
 
 1. **Fork dan Clone Repository**
-   - Fork repository ini ke akun GitHub Anda.
-   - Clone repository ke mesin lokal Anda dengan perintah:
+   - Fork repository ini ke akun GitHub.
+   - Clone repository ke mesin lokal dengan perintah:
      ```bash
-     git clone https://github.com/username/ENDINI-NURLAILY_H1D022089_SHIFT-C_PEMPROGRAMANMOBILE2024.git
+     git clone https://github.com/endiniii/ENDINI-NURLAILY_H1D022089_SHIFT-C_PEMPROGRAMANMOBILE2024.git
      ```
-     (Ganti `username` dengan nama pengguna GitHub Anda.)
 
 2. **Install Dependencies**
    - Navigasikan ke direktori proyek:
